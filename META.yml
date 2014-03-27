@@ -1,0 +1,55 @@
+---
+abstract: 'Bump module versions after distribution release'
+author:
+  - 'David Golden <dagolden@cpan.org>'
+build_requires:
+  ExtUtils::MakeMaker: '0'
+  File::Spec::Functions: '0'
+  List::Util: '0'
+  Test::DZil: '0'
+  Test::Fatal: '0'
+  Test::More: '0.96'
+  utf8: '0'
+configure_requires:
+  ExtUtils::MakeMaker: '6.17'
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 5.014, CPAN::Meta::Converter version 2.140640'
+license: apache
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: '1.4'
+name: Dist-Zilla-Plugin-BumpVersionAfterRelease
+no_index:
+  directory:
+    - t
+    - xt
+    - examples
+    - corpus
+  package:
+    - DB
+provides:
+  Dist::Zilla::Plugin::BumpVersionAfterRelease:
+    file: lib/Dist/Zilla/Plugin/BumpVersionAfterRelease.pm
+    version: '0.001'
+  Dist::Zilla::Plugin::RewriteVersion:
+    file: lib/Dist/Zilla/Plugin/RewriteVersion.pm
+    version: '0.001'
+requires:
+  Dist::Zilla::Role::AfterRelease: '5'
+  Dist::Zilla::Role::FileFinderUser: '0'
+  Dist::Zilla::Role::FileMunger: '5'
+  Dist::Zilla::Role::VersionProvider: '0'
+  Moose: '0'
+  Path::Tiny: '0'
+  Version::Next: '0'
+  namespace::autoclean: '0'
+  perl: '5.008001'
+  strict: '0'
+  version: '0'
+  warnings: '0'
+resources:
+  bugtracker: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease/issues
+  homepage: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease
+  repository: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease.git
+version: '0.001'
+x_authority: cpan:DAGOLDEN

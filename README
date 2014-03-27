@@ -1,0 +1,135 @@
+NAME
+    Dist::Zilla::Plugin::BumpVersionAfterRelease - Bump module versions
+    after distribution release
+
+VERSION
+    version 0.001
+
+SYNOPSIS
+    In your code, declare $VERSION like this:
+
+        package Foo;
+        our $VERSION = '1.23';
+
+    In your dist.ini:
+
+        [RewriteVersion]
+
+        [BumpVersionAfterRelease]
+
+DESCRIPTION
+    After a release, this module modifies your original source code to
+    replace an existing "our $VERSION = '1.23'" declaration with the next
+    number after the released version as determined by Version::Next. Only
+    the first occurrence is affected and it must exactly match this regular
+    expression:
+
+        qr{^our \s+ \$VERSION \s* = \s* '$version::LAX'}mx
+
+    It must be at the start of a line and any trailing comments are deleted.
+    The original may have double-quotes, but the re-written line will have
+    single quotes.
+
+    The very restrictive regular expression format is intentional to avoid
+    the various ways finding a version assignment could go wrong and to
+    avoid using PPI, which has similar complexity issues.
+
+    For most modules, this should work just fine.
+
+USAGE
+    This Dist::Zilla plugin, along with RewriteVersion let you leave a
+    $VERSION declaration in the code files in your repository but still let
+    Dist::Zilla provide automated version management.
+
+    First, you include a very specific $VERSION declaration in your code:
+
+        our $VERSION = '0.001';
+
+    It must be on a line by itself and should be the same in all your files.
+    (If it is not, it will be overwritten anyway.)
+
+    RewriteVersion is a version provider plugin, so the version line from
+    your main module will be used as the version for your release.
+
+    If you override the version with the "V" environment variable, then
+    RewriteVersion will overwrite the $VERSION declaration in the gathered
+    files.
+
+        V=1.000 dzil release
+
+    Finally, after a successful release, this module BumpVersionAfterRelease
+    will overwrite the $VERSION declaration in your source files to be the
+    next version after the one you just released. That version will then be
+    the default one that will be used for the next release.
+
+    If you tag/commit after a release, you may want to tag and commit before
+    the source files are modified. Here is a sample "dist.ini" that shows
+    how you might do that.
+
+        name    = Foo-Bar
+        author  = David Golden <dagolden@cpan.org>
+        license = Apache_2_0
+        copyright_holder = David Golden
+        copyright_year   = 2014
+
+        [@Basic]
+
+        [VersionFromModule]
+
+        [RewriteVersion]
+
+        ; commit source files as of "dzil release" with any
+        ; allowable modifications (e.g Changes)
+        [Git::Commit / Commit_Dirty_Files] ; commit files/Changes (as released)
+
+        ; tag as of "dzil release"
+        [Git::Tag]
+
+        ; update Changes with timestamp of release
+        [NextRelease]
+
+        [BumpVersionAfterRelease]
+
+        ; commit source files after modification
+        [Git::Commit / Commit_Changes] ; commit Changes (for new dev)
+        allow_dirty_match = ^lib/
+        commit_msg = Commit Changes and bump $VERSION
+
+SEE ALSO
+    Here are some other plugins for managing $VERSION in your distribution:
+
+    *   Dist::Zilla::Plugin::PkgVersion
+
+    *   Dist::Zilla::Plugin::OurPkgVersion
+
+    *   Dist::Zilla::Plugin::OverridePkgVersion
+
+    *   Dist::Zilla::Plugin::SurgicalPkgVersion
+
+    *   Dist::Zilla::Plugin::PkgVersionIfModuleWithPod
+
+SUPPORT
+  Bugs / Feature Requests
+    Please report any bugs or feature requests through the issue tracker at
+    <https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease/i
+    ssues>. You will be notified automatically of any progress on your
+    issue.
+
+  Source Code
+    This is open source software. The code repository is available for
+    public review and contribution under the terms of the license.
+
+    <https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease>
+
+      git clone https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease.git
+
+AUTHOR
+    David Golden <dagolden@cpan.org>
+
+COPYRIGHT AND LICENSE
+    This software is Copyright (c) 2014 by David Golden.
+
+    This is free software, licensed under:
+
+      The Apache License, Version 2.0, January 2004
+
