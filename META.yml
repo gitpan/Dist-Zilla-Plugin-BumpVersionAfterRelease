@@ -30,10 +30,10 @@ no_index:
 provides:
   Dist::Zilla::Plugin::BumpVersionAfterRelease:
     file: lib/Dist/Zilla/Plugin/BumpVersionAfterRelease.pm
-    version: '0.001'
+    version: '0.002'
   Dist::Zilla::Plugin::RewriteVersion:
     file: lib/Dist/Zilla/Plugin/RewriteVersion.pm
-    version: '0.001'
+    version: '0.002'
 requires:
   Dist::Zilla::Role::AfterRelease: '5'
   Dist::Zilla::Role::FileFinderUser: '0'
@@ -51,5 +51,5 @@ resources:
   bugtracker: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease/issues
   homepage: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease
   repository: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease.git
-version: '0.001'
+version: '0.002'
 x_authority: cpan:DAGOLDEN

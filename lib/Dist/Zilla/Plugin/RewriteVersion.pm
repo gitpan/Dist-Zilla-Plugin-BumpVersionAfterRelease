@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::RewriteVersion;
 # ABSTRACT: Get and/or rewrite module versions to match distribution version
-our $VERSION = '0.001'; # VERSION
+our $VERSION = '0.002'; # VERSION
 
 use Moose;
 with(
@@ -100,7 +100,7 @@ Dist::Zilla::Plugin::RewriteVersion - Get and/or rewrite module versions to matc
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 

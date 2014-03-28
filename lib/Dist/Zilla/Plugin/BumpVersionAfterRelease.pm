@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::BumpVersionAfterRelease;
 # ABSTRACT: Bump module versions after distribution release
-our $VERSION = '0.001'; # VERSION
+our $VERSION = '0.002'; # VERSION
 
 use Moose;
 with(
@@ -95,7 +95,7 @@ Dist::Zilla::Plugin::BumpVersionAfterRelease - Bump module versions after distri
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -170,8 +170,6 @@ how you might do that.
     copyright_year   = 2014
 
     [@Basic]
-
-    [VersionFromModule]
 
     [RewriteVersion]
 

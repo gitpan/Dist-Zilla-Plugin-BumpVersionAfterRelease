@@ -18,5 +18,5 @@ lib
 Dist
 Zilla
 Plugin
-BumpVersionAfterRelease
 RewriteVersion
+BumpVersionAfterRelease

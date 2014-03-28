@@ -1,5 +1,11 @@
 Revision history for Dist-Zilla-Plugin-BumpVersionAfterRelease
 
+0.002     2014-03-28 10:44:02-04:00 America/New_York
+
+    [DOCUMENTATION]
+
+    - Removed unnecessary VersionFromModule in example dist.ini
+
 0.001     2014-03-27 17:02:51-04:00 America/New_York
 
     - First release

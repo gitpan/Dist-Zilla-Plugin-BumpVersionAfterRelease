@@ -3,7 +3,7 @@ NAME
     after distribution release
 
 VERSION
-    version 0.001
+    version 0.002
 
 SYNOPSIS
     In your code, declare $VERSION like this:
@@ -73,8 +73,6 @@ USAGE
         copyright_year   = 2014
 
         [@Basic]
-
-        [VersionFromModule]
 
         [RewriteVersion]
 
