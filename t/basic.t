@@ -52,6 +52,11 @@ sub _regex_for_version {
     return $exp;
 }
 
+sub _regex_for_makefilePL {
+    my ($version) = @_;
+    return qr{"VERSION" => "\Q$version\E"}m;
+}
+
 for my $c (@cases) {
     my ( $label, $version ) = @{$c}{qw/label version/};
     subtest $label => sub {
@@ -97,7 +102,7 @@ for my $c (@cases) {
         like( $built, qr/1;\s+# last line/, "last line correct in single-quoted file" );
 
         ok(
-            grep( {/adding \$VERSION assignment/} @{ $tzil->log_messages } ),
+            grep( { /adding \$VERSION assignment/ } @{ $tzil->log_messages } ),
             "we log adding a version",
         ) or diag join( "\n", @{ $tzil->log_messages } );
 
@@ -106,7 +111,7 @@ for my $c (@cases) {
         pass("dzil release");
 
         ok(
-            grep( {/fake release happen/i} @{ $tzil->log_messages } ),
+            grep( { /fake release happen/i } @{ $tzil->log_messages } ),
             "we log a fake release when we fake release",
         );
 
@@ -130,6 +135,14 @@ for my $c (@cases) {
         );
 
         like( $orig, qr/1;\s+# last line/, "last line correct in revised source file" );
+
+        my $makefilePL = $tzil->slurp_file('source/Makefile.PL');
+
+        like(
+            $makefilePL,
+            _regex_for_makefilePL( next_version($version) ),
+            "Makefile.PL version bumped"
+        );
 
     };
 }

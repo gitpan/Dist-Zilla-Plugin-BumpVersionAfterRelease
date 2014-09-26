@@ -3,7 +3,7 @@ NAME
     after distribution release
 
 VERSION
-    version 0.002
+    version 0.003
 
 SYNOPSIS
     In your code, declare $VERSION like this:
@@ -92,6 +92,11 @@ USAGE
         [Git::Commit / Commit_Changes] ; commit Changes (for new dev)
         allow_dirty_match = ^lib/
         commit_msg = Commit Changes and bump $VERSION
+
+ATTRIBUTES
+  munge_makefile_pl
+    If there is a Makefile.PL in the root of the repository, its version
+    will be set as well. Defaults to true.
 
 SEE ALSO
     Here are some other plugins for managing $VERSION in your distribution:

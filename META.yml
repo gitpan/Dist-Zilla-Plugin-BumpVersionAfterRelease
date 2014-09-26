@@ -4,8 +4,7 @@ author:
   - 'David Golden <dagolden@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: '0'
-  File::Spec::Functions: '0'
-  List::Util: '0'
+  File::Spec: '0'
   Test::DZil: '0'
   Test::Fatal: '0'
   Test::More: '0.96'
@@ -13,7 +12,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: '6.17'
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.014, CPAN::Meta::Converter version 2.140640'
+generated_by: 'Dist::Zilla version 5.020, CPAN::Meta::Converter version 2.142690'
 license: apache
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -30,10 +29,10 @@ no_index:
 provides:
   Dist::Zilla::Plugin::BumpVersionAfterRelease:
     file: lib/Dist/Zilla/Plugin/BumpVersionAfterRelease.pm
-    version: '0.002'
+    version: '0.003'
   Dist::Zilla::Plugin::RewriteVersion:
     file: lib/Dist/Zilla/Plugin/RewriteVersion.pm
-    version: '0.002'
+    version: '0.003'
 requires:
   Dist::Zilla::Role::AfterRelease: '5'
   Dist::Zilla::Role::FileFinderUser: '0'
@@ -51,5 +50,5 @@ resources:
   bugtracker: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease/issues
   homepage: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease
   repository: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease.git
-version: '0.002'
+version: '0.003'
 x_authority: cpan:DAGOLDEN
