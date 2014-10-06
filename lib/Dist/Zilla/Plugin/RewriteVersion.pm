@@ -5,7 +5,7 @@ use warnings;
 package Dist::Zilla::Plugin::RewriteVersion;
 # ABSTRACT: Get and/or rewrite module versions to match distribution version
 
-our $VERSION = '0.003';
+our $VERSION = '0.004';
 
 use Moose;
 with(
@@ -17,6 +17,18 @@ with(
 
 use namespace::autoclean;
 use version ();
+
+#pod =attr global
+#pod
+#pod If true, all occurrences of the version pattern will be replaced.  Otherwise,
+#pod only the first occurrence is replaced.  Defaults to false.
+#pod
+#pod =cut
+
+has global => (
+    is  => 'ro',
+    isa => 'Bool',
+);
 
 my $assign_regex = qr{
     our \s+ \$VERSION \s* = \s* (['"])($version::LAX)\1 \s* ;
@@ -74,7 +86,12 @@ sub rewrite_version {
     my $comment = $self->zilla->is_trial ? ' # TRIAL' : '';
     my $code = "our \$VERSION = '$version';$comment";
 
-    if ( $content =~ s{^$assign_regex[^\n]*$}{$code}ms ) {
+    if (
+        $self->global
+        ? ( $content =~ s{^$assign_regex[^\n]*$}{$code}msg )
+        : ( $content =~ s{^$assign_regex[^\n]*$}{$code}ms )
+      )
+    {
         $file->content($content);
         return 1;
     }
@@ -101,7 +118,7 @@ Dist::Zilla::Plugin::RewriteVersion - Get and/or rewrite module versions to matc
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -123,7 +140,8 @@ L<Git::NextVersion|Dist::Zilla::Plugin::Git::NextVersion>, in which case all
 the gathered files have their C<$VERSION> set to that value.
 
 Only the B<first> occurrence of a C<$VERSION> declaration in each file is
-relevant and/or affected and it must exactly match this regular expression:
+relevant and/or affected (unless the L</global> attribute is set and it must
+exactly match this regular expression:
 
     qr{^our \s+ \$VERSION \s* = \s* '$version::LAX'}mx
 
@@ -139,6 +157,13 @@ For most modules, this should work just fine.
 
 See L<BumpVersionAfterRelease|Dist::Zilla::Plugin::BumpVersionAfterRelease> for
 more details and usage examples.
+
+=head1 ATTRIBUTES
+
+=head2 global
+
+If true, all occurrences of the version pattern will be replaced.  Otherwise,
+only the first occurrence is replaced.  Defaults to false.
 
 =for Pod::Coverage munge_files munge_file rewrite_version provide_version
 

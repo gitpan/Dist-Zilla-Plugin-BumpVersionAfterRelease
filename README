@@ -3,7 +3,7 @@ NAME
     after distribution release
 
 VERSION
-    version 0.003
+    version 0.004
 
 SYNOPSIS
     In your code, declare $VERSION like this:
@@ -21,8 +21,8 @@ DESCRIPTION
     After a release, this module modifies your original source code to
     replace an existing "our $VERSION = '1.23'" declaration with the next
     number after the released version as determined by Version::Next. Only
-    the first occurrence is affected and it must exactly match this regular
-    expression:
+    the first occurrence is affected (unless you set the "global" attribute)
+    and it must exactly match this regular expression:
 
         qr{^our \s+ \$VERSION \s* = \s* '$version::LAX'}mx
 
@@ -94,6 +94,10 @@ USAGE
         commit_msg = Commit Changes and bump $VERSION
 
 ATTRIBUTES
+  global
+    If true, all occurrences of the version pattern will be replaced.
+    Otherwise, only the first occurrence is replaced. Defaults to false.
+
   munge_makefile_pl
     If there is a Makefile.PL in the root of the repository, its version
     will be set as well. Defaults to true.

@@ -5,7 +5,7 @@ use warnings;
 package Dist::Zilla::Plugin::BumpVersionAfterRelease;
 # ABSTRACT: Bump module versions after distribution release
 
-our $VERSION = '0.003';
+our $VERSION = '0.004';
 
 use Moose;
 with(
@@ -16,6 +16,18 @@ with(
 
 use namespace::autoclean;
 use version ();
+
+#pod =attr global
+#pod
+#pod If true, all occurrences of the version pattern will be replaced.  Otherwise,
+#pod only the first occurrence is replaced.  Defaults to false.
+#pod
+#pod =cut
+
+has global => (
+    is  => 'ro',
+    isa => 'Bool',
+);
 
 #pod =attr munge_makefile_pl
 #pod
@@ -94,7 +106,12 @@ sub rewrite_version {
     my $comment = $self->zilla->is_trial ? ' # TRIAL' : '';
     my $code = "our \$VERSION = '$version';$comment";
 
-    if ( $content =~ s{^$assign_regex[^\n]*$}{$code}ms ) {
+    if (
+        $self->global
+        ? ( $content =~ s{^$assign_regex[^\n]*$}{$code}msg )
+        : ( $content =~ s{^$assign_regex[^\n]*$}{$code}ms )
+      )
+    {
         Path::Tiny::path( $file->name )->spew( { binmode => $iolayer }, $content );
         return 1;
     }
@@ -138,7 +155,7 @@ Dist::Zilla::Plugin::BumpVersionAfterRelease - Bump module versions after distri
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -158,7 +175,8 @@ In your F<dist.ini>:
 After a release, this module modifies your original source code to replace an
 existing C<our $VERSION = '1.23'> declaration with the next number after the
 released version as determined by L<Version::Next>.  Only the B<first>
-occurrence is affected and it must exactly match this regular expression:
+occurrence is affected (unless you set the L</global> attribute) and it must
+exactly match this regular expression:
 
     qr{^our \s+ \$VERSION \s* = \s* '$version::LAX'}mx
 
@@ -234,6 +252,11 @@ how you might do that.
     commit_msg = Commit Changes and bump $VERSION
 
 =head1 ATTRIBUTES
+
+=head2 global
+
+If true, all occurrences of the version pattern will be replaced.  Otherwise,
+only the first occurrence is replaced.  Defaults to false.
 
 =head2 munge_makefile_pl
 
