@@ -3,7 +3,7 @@ NAME
     after distribution release
 
 VERSION
-    version 0.004
+    version 0.005
 
 SYNOPSIS
     In your code, declare $VERSION like this:
@@ -132,6 +132,9 @@ SUPPORT
 
 AUTHOR
     David Golden <dagolden@cpan.org>
+
+CONTRIBUTOR
+    Kent Fredric <kentfredric@gmail.com>
 
 COPYRIGHT AND LICENSE
     This software is Copyright (c) 2014 by David Golden.

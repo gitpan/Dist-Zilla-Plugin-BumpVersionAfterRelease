@@ -14,9 +14,12 @@ VersionFromModule
 David
 Golden
 dagolden
+Kent
+Fredric
+kentfredric
 lib
 Dist
 Zilla
 Plugin
-RewriteVersion
 BumpVersionAfterRelease
+RewriteVersion

@@ -5,7 +5,7 @@ use warnings;
 package Dist::Zilla::Plugin::RewriteVersion;
 # ABSTRACT: Get and/or rewrite module versions to match distribution version
 
-our $VERSION = '0.004';
+our $VERSION = '0.005';
 
 use Moose;
 with(
@@ -34,9 +34,20 @@ my $assign_regex = qr{
     our \s+ \$VERSION \s* = \s* (['"])($version::LAX)\1 \s* ;
 }x;
 
+#pod =attr skip_version_provider
+#pod
+#pod If true, rely on some other mechanism for determining the "current" version
+#pod instead of extracting it from the C<main_module>. Defaults to false.
+#pod
+#pod This enables hard-coding C<version => in C<dist.ini> among other tricks.
+#pod
+#pod =cut
+
+has skip_version_provider => ( is => ro =>, lazy => 1, default => undef );
+
 sub provide_version {
     my ($self) = @_;
-
+    return if $self->skip_version_provider;
     # override (or maybe needed to initialize)
     return $ENV{V} if exists $ENV{V};
 
@@ -118,7 +129,7 @@ Dist::Zilla::Plugin::RewriteVersion - Get and/or rewrite module versions to matc
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 
@@ -164,6 +175,13 @@ more details and usage examples.
 
 If true, all occurrences of the version pattern will be replaced.  Otherwise,
 only the first occurrence is replaced.  Defaults to false.
+
+=head2 skip_version_provider
+
+If true, rely on some other mechanism for determining the "current" version
+instead of extracting it from the C<main_module>. Defaults to false.
+
+This enables hard-coding C<version => in C<dist.ini> among other tricks.
 
 =for Pod::Coverage munge_files munge_file rewrite_version provide_version
 

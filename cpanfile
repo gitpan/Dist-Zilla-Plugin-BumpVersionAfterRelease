@@ -17,6 +17,7 @@ on 'test' => sub {
   requires "Test::DZil" => "0";
   requires "Test::Fatal" => "0";
   requires "Test::More" => "0.96";
+  requires "perl" => "5.008001";
   requires "utf8" => "0";
 };
 
@@ -26,6 +27,7 @@ on 'test' => sub {
 
 on 'configure' => sub {
   requires "ExtUtils::MakeMaker" => "6.17";
+  requires "perl" => "5.008001";
 };
 
 on 'develop' => sub {
