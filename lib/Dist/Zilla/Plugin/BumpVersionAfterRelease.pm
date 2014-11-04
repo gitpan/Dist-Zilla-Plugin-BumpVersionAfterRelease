@@ -5,7 +5,7 @@ use warnings;
 package Dist::Zilla::Plugin::BumpVersionAfterRelease;
 # ABSTRACT: Bump module versions after distribution release
 
-our $VERSION = '0.005';
+our $VERSION = '0.006';
 
 use Moose;
 with(
@@ -97,6 +97,7 @@ sub rewrite_version {
     my ( $self, $file, $version ) = @_;
 
     require Path::Tiny;
+    Path::Tiny->VERSION(0.060);
 
     my $iolayer = sprintf( ":raw:encoding(%s)", $file->encoding );
 
@@ -112,7 +113,9 @@ sub rewrite_version {
         : ( $content =~ s{^$assign_regex[^\n]*$}{$code}ms )
       )
     {
-        Path::Tiny::path( $file->name )->spew( { binmode => $iolayer }, $content );
+        # append+truncate to preserve file mode
+        Path::Tiny::path( $file->name )
+          ->append( { binmode => $iolayer, truncate => 1 }, $content );
         return 1;
     }
 
@@ -131,7 +134,7 @@ sub rewrite_makefile_pl {
     my $content = $path->slurp_utf8;
 
     if ( $content =~ s{"VERSION" => "[^"]+"}{"VERSION" => "$next_version"}ms ) {
-        $path->spew_utf8($content);
+        $path->append_utf8( { truncate => 1 }, $content );
         return 1;
     }
 
@@ -155,7 +158,7 @@ Dist::Zilla::Plugin::BumpVersionAfterRelease - Bump module versions after distri
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 SYNOPSIS
 

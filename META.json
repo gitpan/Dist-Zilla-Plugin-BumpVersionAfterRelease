@@ -4,7 +4,7 @@
       "David Golden <dagolden@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 5.022, CPAN::Meta::Converter version 2.142690",
+   "generated_by" : "Dist::Zilla version 5.023, CPAN::Meta::Converter version 2.142690",
    "license" : [
       "apache_2_0"
    ],
@@ -54,7 +54,7 @@
             "Dist::Zilla::Role::FileMunger" : "5",
             "Dist::Zilla::Role::VersionProvider" : "0",
             "Moose" : "0",
-            "Path::Tiny" : "0",
+            "Path::Tiny" : "0.060",
             "Version::Next" : "0",
             "namespace::autoclean" : "0",
             "perl" : "5.008001",
@@ -81,11 +81,11 @@
    "provides" : {
       "Dist::Zilla::Plugin::BumpVersionAfterRelease" : {
          "file" : "lib/Dist/Zilla/Plugin/BumpVersionAfterRelease.pm",
-         "version" : "0.005"
+         "version" : "0.006"
       },
       "Dist::Zilla::Plugin::RewriteVersion" : {
          "file" : "lib/Dist/Zilla/Plugin/RewriteVersion.pm",
-         "version" : "0.005"
+         "version" : "0.006"
       }
    },
    "release_status" : "stable",
@@ -100,7 +100,7 @@
          "web" : "https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease"
       }
    },
-   "version" : "0.005",
+   "version" : "0.006",
    "x_authority" : "cpan:DAGOLDEN",
    "x_contributors" : [
       "Kent Fredric <kentfredric@gmail.com>"

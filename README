@@ -3,7 +3,7 @@ NAME
     after distribution release
 
 VERSION
-    version 0.005
+    version 0.006
 
 SYNOPSIS
     In your code, declare $VERSION like this:
