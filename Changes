@@ -1,5 +1,11 @@
 Revision history for Dist-Zilla-Plugin-BumpVersionAfterRelease
 
+0.007     2014-11-13 16:52:44-05:00 America/New_York
+
+    [PREREQS]
+
+    - Require Path::Tiny 0.061 to avoid an append w/ truncate bug
+
 0.006     2014-11-04 17:38:47-05:00 America/New_York
 
     [CHANGED]

@@ -5,7 +5,7 @@ use warnings;
 package Dist::Zilla::Plugin::BumpVersionAfterRelease;
 # ABSTRACT: Bump module versions after distribution release
 
-our $VERSION = '0.006';
+our $VERSION = '0.007';
 
 use Moose;
 with(
@@ -97,7 +97,7 @@ sub rewrite_version {
     my ( $self, $file, $version ) = @_;
 
     require Path::Tiny;
-    Path::Tiny->VERSION(0.060);
+    Path::Tiny->VERSION(0.061);
 
     my $iolayer = sprintf( ":raw:encoding(%s)", $file->encoding );
 
@@ -128,6 +128,7 @@ sub rewrite_makefile_pl {
     my $next_version = $self->_next_version;
 
     require Path::Tiny;
+    Path::Tiny->VERSION(0.061);
 
     my $path = Path::Tiny::path("Makefile.PL");
 
@@ -158,7 +159,7 @@ Dist::Zilla::Plugin::BumpVersionAfterRelease - Bump module versions after distri
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 SYNOPSIS
 
