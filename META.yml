@@ -31,10 +31,10 @@ no_index:
 provides:
   Dist::Zilla::Plugin::BumpVersionAfterRelease:
     file: lib/Dist/Zilla/Plugin/BumpVersionAfterRelease.pm
-    version: '0.007'
+    version: '0.008'
   Dist::Zilla::Plugin::RewriteVersion:
     file: lib/Dist/Zilla/Plugin/RewriteVersion.pm
-    version: '0.007'
+    version: '0.008'
 requires:
   Dist::Zilla::Role::AfterRelease: '5'
   Dist::Zilla::Role::FileFinderUser: '0'
@@ -52,7 +52,8 @@ resources:
   bugtracker: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease/issues
   homepage: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease
   repository: https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease.git
-version: '0.007'
+version: '0.008'
 x_authority: cpan:DAGOLDEN
 x_contributors:
+  - 'Karen Etheridge <ether@cpan.org>'
   - 'Kent Fredric <kentfredric@gmail.com>'

@@ -3,7 +3,7 @@ NAME
     after distribution release
 
 VERSION
-    version 0.007
+    version 0.008
 
 SYNOPSIS
     In your code, declare $VERSION like this:
@@ -61,6 +61,11 @@ USAGE
     will overwrite the $VERSION declaration in your source files to be the
     next version after the one you just released. That version will then be
     the default one that will be used for the next release.
+
+    You can configure which files have their $VERSION declarations modified,
+    with the "finder" option. The default finders are ":InstallModules" and
+    ":ExecFiles"; other predefined finders are listed in "default_finders"
+    in Dist::Zilla::Role::FileFinderUser.
 
     If you tag/commit after a release, you may want to tag and commit before
     the source files are modified. Here is a sample "dist.ini" that shows
@@ -133,8 +138,10 @@ SUPPORT
 AUTHOR
     David Golden <dagolden@cpan.org>
 
-CONTRIBUTOR
-    Kent Fredric <kentfredric@gmail.com>
+CONTRIBUTORS
+    *   Karen Etheridge <ether@cpan.org>
+
+    *   Kent Fredric <kentfredric@gmail.com>
 
 COPYRIGHT AND LICENSE
     This software is Copyright (c) 2014 by David Golden.

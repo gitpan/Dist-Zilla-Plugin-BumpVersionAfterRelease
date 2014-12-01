@@ -1,5 +1,11 @@
 Revision history for Dist-Zilla-Plugin-BumpVersionAfterRelease
 
+0.008     2014-12-01 09:59:35-05:00 America/New_York
+
+    [DOCUMENTATION]
+
+    - Documented 'finder' option
+
 0.007     2014-11-13 16:52:44-05:00 America/New_York
 
     [PREREQS]

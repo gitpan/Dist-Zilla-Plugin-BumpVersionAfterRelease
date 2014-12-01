@@ -44,7 +44,8 @@
             "Test::More" : "0",
             "Test::Pod" : "1.41",
             "Test::Pod::Coverage" : "1.08",
-            "Test::Spelling" : "0.12"
+            "Test::Spelling" : "0.12",
+            "Test::Version" : "1"
          }
       },
       "runtime" : {
@@ -81,11 +82,11 @@
    "provides" : {
       "Dist::Zilla::Plugin::BumpVersionAfterRelease" : {
          "file" : "lib/Dist/Zilla/Plugin/BumpVersionAfterRelease.pm",
-         "version" : "0.007"
+         "version" : "0.008"
       },
       "Dist::Zilla::Plugin::RewriteVersion" : {
          "file" : "lib/Dist/Zilla/Plugin/RewriteVersion.pm",
-         "version" : "0.007"
+         "version" : "0.008"
       }
    },
    "release_status" : "stable",
@@ -100,9 +101,10 @@
          "web" : "https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease"
       }
    },
-   "version" : "0.007",
+   "version" : "0.008",
    "x_authority" : "cpan:DAGOLDEN",
    "x_contributors" : [
+      "Karen Etheridge <ether@cpan.org>",
       "Kent Fredric <kentfredric@gmail.com>"
    ]
 }

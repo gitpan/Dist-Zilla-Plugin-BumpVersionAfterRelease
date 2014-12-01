@@ -14,6 +14,9 @@ VersionFromModule
 David
 Golden
 dagolden
+Karen
+Etheridge
+ether
 Kent
 Fredric
 kentfredric
@@ -21,5 +24,5 @@ lib
 Dist
 Zilla
 Plugin
-RewriteVersion
 BumpVersionAfterRelease
+RewriteVersion

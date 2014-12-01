@@ -5,7 +5,7 @@ use warnings;
 package Dist::Zilla::Plugin::BumpVersionAfterRelease;
 # ABSTRACT: Bump module versions after distribution release
 
-our $VERSION = '0.007';
+our $VERSION = '0.008';
 
 use Moose;
 with(
@@ -159,7 +159,7 @@ Dist::Zilla::Plugin::BumpVersionAfterRelease - Bump module versions after distri
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 SYNOPSIS
 
@@ -223,6 +223,11 @@ L<BumpVersionAfterRelease|Dist::Zilla::Plugin::BumpVersionAfterRelease> will
 overwrite the C<$VERSION> declaration in your B<source> files to be the B<next>
 version after the one you just released.  That version will then be the default
 one that will be used for the next release.
+
+You can configure which files have their C<$VERSION> declarations modified,
+with the C<finder> option. The default finders are C<:InstallModules> and
+C<:ExecFiles>; other predefined finders are listed in
+L<Dist::Zilla::Role::FileFinderUser/default_finders>.
 
 If you tag/commit after a release, you may want to tag and commit B<before>
 the source files are modified.  Here is a sample C<dist.ini> that shows
@@ -320,11 +325,21 @@ L<https://github.com/dagolden/Dist-Zilla-Plugin-BumpVersionAfterRelease>
 
 David Golden <dagolden@cpan.org>
 
-=head1 CONTRIBUTOR
+=head1 CONTRIBUTORS
 
-=for stopwords Kent Fredric
+=for stopwords Karen Etheridge Kent Fredric
+
+=over 4
+
+=item *
+
+Karen Etheridge <ether@cpan.org>
+
+=item *
 
 Kent Fredric <kentfredric@gmail.com>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 
